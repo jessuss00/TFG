@@ -26,11 +26,7 @@ create table evento(
 	id int auto_increment primary key,
     nombre varchar(100),
     tipo varchar(200) not null,
-    fecha_inicio datetime,
-    fecha_fin datetime,
-    descripcion text,
-    localizacion_exacta varchar(200),
-    entradas varchar(255),
+    descripcion_simple text,
     confirmada boolean,
     municipio int, 
     constraint fk_evento_municipio foreign key(municipio) references municipio(id)
@@ -40,8 +36,12 @@ create table evento(
 create table detalle_evento(
 	id int auto_increment primary key,
     evento int not null,
+    fecha_inicio datetime,
+    fecha_fin datetime,
     subtipo varchar(100), -- Ejemplo: fútbol, teatro, flamenco, tapas, feria...
     descripcion_detallada text,
+    localizacion_exacta varchar(200),
+    entradas varchar(255),
     constraint fk_detalle_evento foreign key(evento) references evento(id)
 );
 
